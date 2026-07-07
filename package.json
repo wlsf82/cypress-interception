@@ -1,0 +1,23 @@
+{
+  "name": "cypress-interception",
+  "version": "1.0.0",
+  "description": "Project of the Cypress Interception course from the Talking About Testing online school.",
+  "main": "cypress.config.js",
+  "scripts": {
+    "test": "cypress run",
+    "cy:open": "cypress open"
+  },
+  "keywords": [
+    "cypress",
+    "cy-intercept",
+    "talking-about-testing",
+    "tat-school"
+  ],
+  "author": "Walmyr <wlsf82@gmail.com> (https://walmyr.dev/)",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "@faker-js/faker": "^10.5.0",
+    "cypress": "^15.18.1"
+  }
+}
