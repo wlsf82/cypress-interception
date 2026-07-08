@@ -296,3 +296,25 @@ describe('Errors', () => {
       .should('be.visible')
   })
 })
+
+describe('Loading State', () => {
+  it('shows a "Loading ..." state before showing the results', () => {
+    cy.intercept(
+      'GET',
+      '**/search**',
+      {
+        delay: 1000,
+        fixture: 'stories'
+      }
+    ).as('getDelayedStories')
+
+    cy.visit('/')
+
+    cy.contains('p', 'Loading ...').should('be.visible')
+
+    cy.wait('@getDelayedStories')
+
+    cy.contains('p', 'Loading ...').should('not.exist')
+    cy.get('.item').should('have.length', 2)
+  })
+})
