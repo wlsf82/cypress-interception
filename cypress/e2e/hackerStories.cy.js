@@ -2,10 +2,9 @@ import { faker } from '@faker-js/faker/locale/en'
 
 describe('Hacker Stories', () => {
   beforeEach(() => {
+    cy.intercept('GET', '**/search?query=React&page=0').as('getStories')
     cy.visit('/')
-
-    cy.assertLoadingIsShownAndHidden()
-    cy.contains('button', 'More').should('be.visible')
+    cy.wait('@getStories')
   })
 
   it('shows the footer', () => {
