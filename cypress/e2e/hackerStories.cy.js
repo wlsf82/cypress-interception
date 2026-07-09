@@ -47,10 +47,13 @@ describe('Hacker Stories', () => {
 
       cy.wait('@getNewTermStories')
 
+      cy.assertSearchInLocalStorage(newTerm)
+
       cy.contains('button', initialTerm).click()
 
       cy.wait('@getStories')
 
+      cy.assertSearchInLocalStorage(initialTerm)
       cy.get('.item').should('have.length', 20)
       cy.get('.item')
         .first()
@@ -225,6 +228,7 @@ describe('Hacker Stories', () => {
 
         cy.wait('@getNewTermMockedStories')
 
+        cy.assertSearchInLocalStorage(newTerm)
         cy.get('.item')
           .should('have.length', 2)
           .and('be.visible')
@@ -238,6 +242,7 @@ describe('Hacker Stories', () => {
 
         cy.wait('@getNewTermMockedStories')
 
+        cy.assertSearchInLocalStorage(newTerm)
         cy.get('.item')
           .should('have.length', 2)
           .and('be.visible')
@@ -260,6 +265,7 @@ describe('Hacker Stories', () => {
               .clear()
               .type(`${randomTerm}{enter}`)
             cy.wait('@getRandomStories')
+            cy.assertSearchInLocalStorage(randomTerm)
           })
 
           cy.get('.last-searches')
