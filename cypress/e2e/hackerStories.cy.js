@@ -22,13 +22,17 @@ describe('Hacker Stories', () => {
         query: { query: initialTerm, page: '1' }
       }).as('getNextStories')
 
-      cy.get('.item').should('have.length', 20)
+      cy.get('.item')
+        .should('have.length', 20)
+        .and('be.visible')
 
       cy.contains('button', 'More').click()
 
       cy.wait('@getNextStories')
 
-      cy.get('.item').should('have.length', 40)
+      cy.get('.item')
+        .should('have.length', 40)
+        .and('be.visible')
     })
 
     it('searches via the last searched term', () => {
@@ -43,9 +47,7 @@ describe('Hacker Stories', () => {
 
       cy.wait('@getNewTermStories')
 
-      cy.contains('button', initialTerm)
-        .should('be.visible')
-        .click()
+      cy.contains('button', initialTerm).click()
 
       cy.wait('@getStories')
 
@@ -53,6 +55,7 @@ describe('Hacker Stories', () => {
       cy.get('.item')
         .first()
         .should('contain', initialTerm)
+        .and('be.visible')
       cy.contains('button', newTerm)
         .should('be.visible')
     })
@@ -113,7 +116,6 @@ describe('Hacker Stories', () => {
           it('orders by title', () => {
             cy.contains('.list-header-button', 'Title')
               .as('titleHeader')
-              .should('be.visible')
               .click()
 
             cy.get('.item')
@@ -137,7 +139,6 @@ describe('Hacker Stories', () => {
           it('orders by author', () => {
             cy.contains('.list-header-button', 'Author')
               .as('authorHeader')
-              .should('be.visible')
               .click()
 
             cy.get('.item')
@@ -157,7 +158,6 @@ describe('Hacker Stories', () => {
           it('orders by comments', () => {
             cy.contains('.list-header-button', 'Comments')
               .as('commentsHeader')
-              .should('be.visible')
               .click()
 
             cy.get('.item')
@@ -177,7 +177,6 @@ describe('Hacker Stories', () => {
           it('orders by points', () => {
             cy.contains('.list-header-button', 'Points')
               .as('pointsHeader')
-              .should('be.visible')
               .click()
 
             cy.get('.item')
@@ -226,7 +225,9 @@ describe('Hacker Stories', () => {
 
         cy.wait('@getNewTermMockedStories')
 
-        cy.get('.item').should('have.length', 2)
+        cy.get('.item')
+          .should('have.length', 2)
+          .and('be.visible')
         cy.contains('button', initialTerm)
           .should('be.visible')
       })
@@ -237,7 +238,9 @@ describe('Hacker Stories', () => {
 
         cy.wait('@getNewTermMockedStories')
 
-        cy.get('.item').should('have.length', 2)
+        cy.get('.item')
+          .should('have.length', 2)
+          .and('be.visible')
         cy.contains('button', initialTerm)
           .should('be.visible')
       })
@@ -261,6 +264,7 @@ describe('Hacker Stories', () => {
 
           cy.get('.last-searches button')
             .should('have.length', 5)
+            .and('be.visible')
         })
       })
     })
