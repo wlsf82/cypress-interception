@@ -262,11 +262,10 @@ describe('Hacker Stories', () => {
             cy.wait('@getRandomStories')
           })
 
-          cy.get('.last-searches').within(() => {
-            cy.get('button')
-              .should('have.length', 5)
-              .and('be.visible')
-          })
+          cy.get('.last-searches')
+            .find('button')
+            .should('have.length', 5)
+            .and('be.visible')
         })
       })
     })
